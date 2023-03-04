@@ -1,19 +1,11 @@
+use crate::db::utilities::*;
 use crate::{error::Error::*, handler::BookRequest, Book, Result};
 use chrono::prelude::*;
 use futures::StreamExt;
 use mongodb::bson::{doc, document::Document, oid::ObjectId, Bson};
 use mongodb::{options::ClientOptions, Client, Collection};
 
-const DB_NAME: &str = "booky";
-const COLL: &str = "books";
-
-const ID: &str = "_id";
-const NAME: &str = "name";
-const AUTHOR: &str = "author";
-const NUM_PAGES: &str = "num_pages";
-const ADDED_AT: &str = "added_at";
-const TAGS: &str = "tags";
-
+pub mod utilities;
 #[derive(Clone, Debug)]
 pub struct DB {
   pub client: Client,
@@ -21,7 +13,7 @@ pub struct DB {
 
 impl DB {
   pub async fn init() -> Result<Self> {
-    let mut client_options = ClientOptions::parse("mongodb://127.0.0.1:27017").await?;
+    let mut client_options = ClientOptions::parse(MONGODB_URL).await?;
     client_options.app_name = Some(DB_NAME.to_string());
 
     Ok(Self {

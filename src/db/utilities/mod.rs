@@ -1,0 +1,9 @@
+pub const DB_NAME: &str = "booky";
+pub const COLL: &str = "books";
+pub const ID: &str = "_id";
+pub const NAME: &str = "name";
+pub const AUTHOR: &str = "author";
+pub const NUM_PAGES: &str = "num_pages";
+pub const ADDED_AT: &str = "added_at";
+pub const TAGS: &str = "tags";
+pub const MONGODB_URL: &str = "mongodb://127.0.0.1:27017";
